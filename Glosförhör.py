@@ -9,3 +9,5 @@ def läsFil (infil):
         lista.append(rad)
     infil.close()
     return lista
+
+print("Hej")
