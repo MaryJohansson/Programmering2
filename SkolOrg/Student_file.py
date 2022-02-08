@@ -8,7 +8,7 @@ class Student:
         self.school = school
         pass
 
-    def __eq__(self, other):
+    def __eq__(self, ssn, other):
         return self.ssn == other
 
     def change_school(self):
