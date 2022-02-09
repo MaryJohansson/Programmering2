@@ -1,2 +1,10 @@
 Axe;Yxa
 Axelotte;Axelott
+Baby;Bebis
+Ball;Boll
+Camera;Kamera
+Camel;Kamel
+Dragon;Drake
+Duck;Anka
+Elephant;Elefant
+Earth;jorden
