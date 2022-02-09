@@ -1,18 +1,16 @@
-"""with open("glosor.txt", "r") as infil:
-    for rad in infil:
-        rad = rad.strip()
+class Glosor:
 
-def läsFil (infil):
-    lista = []
-    for rad in infil:
-        rad = rad.strip()
-        lista.append(rad)
-    infil.close()
-    return lista
-"""
+    def __init__(self, English, Swedish):
+        self.English = English
+        self.Swedish = Swedish
+
+    def __str__(self):
+        return f"English: {self.English} Swedish: {self.Swedish}"
+
 glosor = []
-with open("glosor.txt", "r") as file:
+with open("glosor.txt", "r",encoding="utf8") as file:
     for row in file:
         row = row.strip("\n")
         row_list = row.split(",")
-        print(type(row_list), row_list)
+        glosor.append(Glosor((row_list[0], row_list[1]))
+
