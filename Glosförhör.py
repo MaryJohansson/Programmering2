@@ -11,6 +11,7 @@ glosor = []
 with open("glosor.txt", "r",encoding="utf8") as file:
     for row in file:
         row = row.strip("\n")
-        row_list = row.split(",")
-        glosor.append(Glosor((row_list[0], row_list[1]))
+        row_list = row.split(";")
+        glosor.append(Glosor(row_list[0],row_list[1]))
+print(*glosor,sep="\n")
 
