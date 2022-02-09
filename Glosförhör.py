@@ -14,6 +14,5 @@ glosor = []
 with open("glosor.txt", "r") as file:
     for row in file:
         row = row.strip("\n")
-        print(type(row), row)
         row_list = row.split(",")
         print(type(row_list), row_list)
