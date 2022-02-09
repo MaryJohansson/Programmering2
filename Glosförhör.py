@@ -1,13 +1,6 @@
-dict = {}
-with open("glosor.txt", "r") as infil:
+"""with open("glosor.txt", "r") as infil:
     for rad in infil:
         rad = rad.strip()
-        rad = rad.split(";")
-        dict[rad[0]] = rad[1]
-
-print(dict)
-
-
 
 def läsFil (infil):
     lista = []
@@ -16,3 +9,11 @@ def läsFil (infil):
         lista.append(rad)
     infil.close()
     return lista
+"""
+glosor = []
+with open("glosor.txt", "r") as file:
+    for row in file:
+        row = row.strip("\n")
+        print(type(row), row)
+        row_list = row.split(",")
+        print(type(row_list), row_list)
