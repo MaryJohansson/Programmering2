@@ -31,18 +31,14 @@ if choices:= "1":
 """
     elif choice in ["2" , "look"]:
        print(*all_pokemon)
-
 =======
         # Create a new X
         pass
-
     elif choice in ["2", "look"]:
         # Look at all X
         pass
 >>>>>>> 7497861dcf9b1d574652b621b4e691119adaafa2
-
     elif choice in ["3", "quit"]:
         break
-
     else:
         print("Not a case")"""
