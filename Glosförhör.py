@@ -18,9 +18,9 @@ with open("glosor.txt", "r",encoding="utf8") as file:
 
 choice=[]
 print("Välkommen till vårt glosförhör, detta kan du göra:")
-print("1. Kolla på glosor\n2. Öva på glosor\n3. Lägg till glosa\n4. Ta bort glosa\n")
+print("1. Kolla på glosor\n2. Öva på glosor (Engelska - Svenska)\n3. Öva på glosor (Svenska - Engelska)\n4. Lägg till glosa\n5. Ta bort glosa\n")
 
-while (choices:=(input("Vad vill du göra?(välj en siffra)")).lower()) not in ["1","2","3","4"]:
+while (choices:=(input("Vad vill du göra?(välj en siffra)")).lower()) not in ["1","2","3","4","5"]:
     print("Välj vad du vill göra!")
 
 
@@ -30,7 +30,17 @@ if choices == "1":
 if choices == "2":
     glosa = random.choice(glosor)
     print(glosa.Engelska)
+    while (choices:=(input("Vad är ordet på svenska?")).lower()) not in glosor:
+        print("Prova igen!")
 
+if choices == "3":
+    print()
+
+if choices == "4":
+    print()
+
+if choices == "5":
+    print()
 
 
 
