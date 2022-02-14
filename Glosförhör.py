@@ -1,3 +1,4 @@
+import random
 class Glosor:
 
     def __init__(self, Engelska, Svenska):
@@ -19,11 +20,17 @@ choice=[]
 print("Välkommen till vårt glosförhör, detta kan du göra:")
 print("1. Kolla på glosor\n2. Öva på glosor\n3. Lägg till glosa\n4. Ta bort glosa\n")
 
-while choices:=(input("Vad vill du göra?(välj en siffra)")).lower()not in ["1","2","3","4"]:
+while (choices:=(input("Vad vill du göra?(välj en siffra)")).lower()) not in ["1","2","3","4"]:
     print("Välj vad du vill göra!")
 
-if choices:= "1":
+
+if choices == "1":
     print(*glosor, sep="\n")
+
+if choices == "2":
+    glosa = random.choice(glosor)
+    print(glosa.Engelska)
+
 
 
 
@@ -36,7 +43,7 @@ if choices:= "1":
         pass
     elif choice in ["2", "look"]:
         # Look at all X
-        pass
+        pass    
 >>>>>>> 7497861dcf9b1d574652b621b4e691119adaafa2
     elif choice in ["3", "quit"]:
         break
