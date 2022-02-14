@@ -27,20 +27,25 @@ while (choices:=(input("Vad vill du göra?(välj en siffra)")).lower()) not in [
 if choices == "1":
     print(*glosor, sep="\n")
 
-if choices == "2":
+elif choices == "2":
     glosa = random.choice(glosor)
     print(glosa.Engelska)
     while (choices:=(input("Vad är ordet på svenska?")).lower()) not in glosor:
         print("Prova igen!")
 
-if choices == "3":
+elif choices == "3":
     print()
 
-if choices == "4":
-    print()
+elif choices == "4":
+    plus = input("Lägg till en glosa:")
+    glosor.append(plus)
 
-if choices == "5":
-    print()
+elif choices == "5":
+    bort = input("Ta bort en glosa:")
+    if bort in glosor:
+        glosor.remove(bort)
+    else:
+        print("Den glosan kan inte tas bort")
 
 
 
