@@ -1,26 +1,26 @@
-Ant;Myra
-Baboon;Babian
-Camel;Kamel
-Dragon;Drake
-Elephant;Elefant
-Fish;Fisk
-Grasshopper;Gräshoppare
-Hummingbird;
-Iguana;Leguan
-Jellyfish;Manet
-Kangaroo;Känguru
-Ladybug;Nyckelpiga
-Moth;Mal
-Naked Mole Rat;Naken mullvadsråtta
-Ostrich;Struts
-Parrot;Papegoja
-Quagga;Kvagga
-Rabbit;Hare
-Snake;Orm
-Tyrannosaurus rex;Tyrannosaurus rex
-Ursula;Bläckfisk
-Velociraptor;Velociraptor
-Wale;Val
-Xreus;Xreus
-Yak;Jak
-Zebra;Zebra
+ant;myra
+baboon;babian
+camel;kamel
+dragon;drake
+elephant;elefant
+fish;fisk
+grasshopper;gräshoppare
+hummingbird;kolibri
+iguana;leguan
+jellyfish;manet
+kangaroo;känguru
+ladybug;nyckelpiga
+moth;mal
+naked mole rat;naken mullvadsråtta
+ostrich;struts
+parrot;papegoja
+quagga;kvagga
+rabbit;hare
+snake;orm
+tyrannosaurus rex;tyrannosaurus rex
+ursula;bläckfisk
+velociraptor;velociraptor
+wale;val
+xerus;xerus
+yak;jak
+zebra;zebra

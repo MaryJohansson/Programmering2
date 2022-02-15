@@ -14,6 +14,7 @@ with open("glosor.txt", "r",encoding="utf8") as file:
         row = row.strip("\n")
         row_list = row.split(";")
         glosor.append(Glosor(row_list[0],row_list[1]))
+print(*glosor)
 
 
 choice=[]
@@ -46,21 +47,3 @@ elif choices == "5":
         glosor.remove(bort)
     else:
         print("Den glosan kan inte tas bort")
-
-
-
-
-"""
-    elif choice in ["2" , "look"]:
-       print(*all_pokemon)
-=======
-        # Create a new X
-        pass
-    elif choice in ["2", "look"]:
-        # Look at all X
-        pass    
->>>>>>> 7497861dcf9b1d574652b621b4e691119adaafa2
-    elif choice in ["3", "quit"]:
-        break
-    else:
-        print("Not a case")"""
