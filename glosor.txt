@@ -4,7 +4,7 @@ camel;kamel
 dragon;drake
 elephant;elefant
 fish;fisk
-grasshopper;gräshoppare
+grasshopper;gräshoppar
 hummingbird;kolibri
 iguana;leguan
 jellyfish;manet
