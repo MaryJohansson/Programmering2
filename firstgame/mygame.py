@@ -11,7 +11,6 @@ def update():
     pass
 
 
-
 for z in range(20):
 	for x in range(20):
 		voxel = Voxel((x,0,z))
