@@ -6,6 +6,7 @@ app = Ursina()
 window.fps_counter.enabled = False
 window.exit_button.visible = True
 
+sky = Sky()
 def update():
     pass
 
