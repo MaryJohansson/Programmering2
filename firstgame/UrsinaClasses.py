@@ -1,5 +1,5 @@
 from ursina import *
-print("Hej mary")
+print("Hej Ida")
 class Voxel(Button):
 	def __init__(self, position):
 		super().__init__(
