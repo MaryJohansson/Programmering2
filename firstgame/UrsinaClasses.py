@@ -7,7 +7,7 @@ class Voxel(Button):
 			position = position,
 			model = 'cube',
 			origin_y = 0.5,
-			texture ="yoda.jpg",
+			texture ="ursula.jpg",
 			color = color.peach,
 			scale = 0.989)
 
