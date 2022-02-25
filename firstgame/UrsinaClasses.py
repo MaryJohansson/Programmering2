@@ -8,8 +8,8 @@ class Voxel(Button):
             position=position,
             model='cube',
             origin_y=0.5,
-            texture="ursula.jpg",
-            color=color.peach,
+            texture="yoda.jpg",
+            color=color.white,
             scale=0.989)
 
 
@@ -43,7 +43,7 @@ class Target(Entity):
         else:
             position = (random.randrange(0, 20), random.randrange(3, 7), 0)
 
-        self.speed = 1
+        self.speed = 5
         super(Target, self).__init__(
             parent=scene,
             model="cube",
@@ -58,4 +58,5 @@ class Target(Entity):
 
     def update(self):
         self.lookAt(self.game.player.position + (0, 3, 0))
-        self.position += self.forward * time.dt
+        self.position += self.forward * self.speed * time.dt
+
