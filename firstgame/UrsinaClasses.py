@@ -59,4 +59,3 @@ class Target(Entity):
     def update(self):
         self.lookAt(self.game.player.position + (0, 3, 0))
         self.position += self.forward * self.speed * time.dt
-
