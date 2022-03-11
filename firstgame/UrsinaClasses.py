@@ -50,6 +50,7 @@ class Target(Entity):
             texture="ursula.jpg",
             position=position,
             collider='cube',
+
         )
 
     def input(self, key):
@@ -59,3 +60,16 @@ class Target(Entity):
     def update(self):
         self.lookAt(self.game.player.position + (0, 3, 0))
         self.position += self.forward * self.speed * time.dt
+
+
+class Enemy(Entity):
+
+    def __init__(self, scale=(1, 1, 1), position=(0, 0, 0)):
+        super(Enemy, self).__init__(
+            parent=scene,
+            position=position,
+            model="cube",
+            color=rgb(128, 128, 0),
+            collider='box',
+            scale=scale
+        )

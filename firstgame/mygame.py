@@ -5,7 +5,7 @@ from ursina.prefabs.first_person_controller import FirstPersonController
 class Game:
 
     def __init__(self):
-        self.player = Entity(model="cube")
+        self.player = Entity(model="yoda.obj", position=(1,1,1), scale = 0.90)
         self.player.gravity=0
 
 
@@ -19,8 +19,10 @@ sky = Sky()
 
 
 def update():
-    mygame.player.x += held_keys["w"] * time.dt
-    mygame.player.z += held_keys["s"] * time.dt
+    mygame.player.x += held_keys["d"] * time.dt
+    mygame.player.x -= held_keys["a"] * time.dt
+    mygame.player.z += held_keys["w"] * time.dt
+    mygame.player.z -= held_keys["s"] * time.dt
 
 
 
@@ -31,9 +33,7 @@ for z in range(20):
 for _ in range(5):
     Target(mygame)
 
-yoda = Entity(model="Grogu.obj", position=(1,1,1), scale = 0.90, color=color.green)
 camera.parent = mygame.player
-camera.position = (0, 11, -15)
+camera.position = (0, 11, -20)
 camera.rotation = (30, 0, 0)
-EditorCamera()
 app.run()
