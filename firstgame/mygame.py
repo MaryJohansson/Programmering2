@@ -5,7 +5,7 @@ from ursina.prefabs.first_person_controller import FirstPersonController
 class Game:
 
     def __init__(self):
-        self.player = Entity(model="yoda.obj", position=(1,1,1), scale = 0.90)
+        self.player = Entity(model="yoda.obj", position=(10,10,10), scale = 0.3)
         self.player.gravity=0
 
 
@@ -34,6 +34,6 @@ for _ in range(5):
     Target(mygame)
 
 camera.parent = mygame.player
-camera.position = (0, 11, -20)
+camera.position = (0, 5,-20)
 camera.rotation = (30, 0, 0)
 app.run()
