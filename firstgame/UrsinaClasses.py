@@ -62,6 +62,7 @@ class Target(Entity):
         self.position += self.forward * self.speed * time.dt
 
 
+
 class Enemy(Entity):
 
     def __init__(self, scale=(1, 1, 1), position=(0, 0, 0)):
