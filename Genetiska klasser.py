@@ -1,3 +1,4 @@
+from ursinanetworking import *
 class Card:
 
     def __init__(self, value, suit):
