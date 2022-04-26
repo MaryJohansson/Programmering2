@@ -9,7 +9,7 @@ class Glosor:
         return f"Engelska: {self.Engelska} Svenska: {self.Svenska}"
 
 glosor = []
-with open("glosor.txt", "r",encoding="utf8") as file:
+with open("glosor.txt", "r", encoding="utf8") as file:
     for row in file:
         row = row.strip("\n")
         row_list = row.split(";")

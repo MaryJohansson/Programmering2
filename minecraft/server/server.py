@@ -2,8 +2,6 @@ from asyncio.tasks import sleep
 from random import uniform
 from time import *
 from ursinanetworking import *
-from perlin_noise import PerlinNoise
-from opensimplex import OpenSimplex
 from ursina import Vec3, distance
 import asyncio
 

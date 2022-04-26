@@ -4,7 +4,6 @@ import threading
 from ursina import *
 from random import *
 from ursina.prefabs.first_person_controller import FirstPersonController
-from perlin_noise import PerlinNoise
 from ursinanetworking import *
 from time import sleep
 
