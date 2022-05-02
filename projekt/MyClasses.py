@@ -10,7 +10,7 @@ class PlayerRepresentation(Entity):
 class Game:
 
     def __init__(self):
-        self.player = FirstPersonController( position=(10,10,10), scale = 0.3)
+        self.player = FirstPersonController( position=(10,100,10), scale = 0.3)
 
 
 class Voxel(Button):
