@@ -48,6 +48,6 @@ for z in range(20):
 
 mygame = Game()
 
-for _ in range(5):
-    Target(mygame)
+#for _ in range(5):
+#    Target(mygame)
 app.run()
