@@ -6,7 +6,7 @@ Easy = EasyUrsinaNetworkingServer(Server)
 
 @Server.event
 def onClientConnected(Client):
-    Easy.create_replicated_variable(Client.name, {"Position" : (10, 15, 10) })
+    Easy.create_replicated_variable(Client.name, {"Position" : (10, 20, 10) })
 
 @Server.event
 def onClientDisconnected(Client):
