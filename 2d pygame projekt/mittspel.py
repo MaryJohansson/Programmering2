@@ -1,5 +1,4 @@
-import pygame
-import minaklasser
+from minaklasser import *
 
 pygame.init()
 
@@ -10,17 +9,13 @@ pygame.display.set_caption("The Mandalorian")
 icon = pygame.image.load('yoda.png')
 pygame.display.set_icon(icon)
 
-#Player
-playerImg = pygame.image.load('yoda.png')
-playerX = 370
-playerY = 480
-playerX_change = 0
+player = Player()
 
 
 def draw(x,y):
     # RBG - Red, Green, Blue
     screen.fill((255, 255, 255))
-    screen.blit(playerImg, (x,y))
+    screen.blit(player.image, (x,y))
 
 
 #Game loop
@@ -48,6 +43,6 @@ while running:
 
 
     # 5 = 5 + -0.1 -> 5 = 5 - 0.1.
-    playerX+= playerX_change
+    player+= playerX_change
     draw(playerX,playerY)
     pygame.display.update()
