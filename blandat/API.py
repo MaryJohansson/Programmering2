@@ -4,7 +4,7 @@ import requests
 # Take the https address and open it in your browser to see the API content
 
 # Uppgift 1
-import requests as requests
+import requests
 
 response = requests.get("https://api.coindesk.com/v1/bpi/currentprice.json")
 answer = response.json()
