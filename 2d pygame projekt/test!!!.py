@@ -4,16 +4,16 @@ import random
 import pygame
 from pygame import mixer
 
-# Intialize the pygame
+# Inviga pygame
 pygame.init()
 
-# create the screen
+# Skapa spelplanet
 screen = pygame.display.set_mode((800, 600))
 
-# Background
+# Bakgrund
 background = pygame.image.load('background.png')
 
-# Sound
+# Ljud
 mixer.music.load("background.wav")
 mixer.music.play(-1)
 
@@ -22,13 +22,13 @@ pygame.display.set_caption("Space Invader")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
 
-# Player
+# Spelare
 playerImg = pygame.image.load('player.png')
 playerX = 370
 playerY = 480
 playerX_change = 0
 
-# Enemy
+# Fiende
 enemyImg = []
 enemyX = []
 enemyY = []
@@ -43,7 +43,7 @@ for i in range(num_of_enemies):
     enemyX_change.append(4)
     enemyY_change.append(40)
 
-# Bullet
+# Skott
 
 # Ready - You can't see the bullet on the screen
 # Fire - The bullet is currently moving
@@ -55,7 +55,7 @@ bulletX_change = 0
 bulletY_change = 10
 bullet_state = "ready"
 
-# Score
+# Poäng
 
 score_value = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
@@ -103,9 +103,9 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
 running = True
 while running:
 
-    # RGB = Red, Green, Blue
+    # RGB = Röd, Grön, Blå
     screen.fill((0, 0, 0))
-    # Background Image
+    # Bakgrunds bild
     screen.blit(background, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -138,7 +138,7 @@ while running:
     elif playerX >= 736:
         playerX = 736
 
-    # Enemy Movement
+    # Fienders rörelse
     for i in range(num_of_enemies):
 
         # Game Over
@@ -156,7 +156,7 @@ while running:
             enemyX_change[i] = -4
             enemyY[i] += enemyY_change[i]
 
-        # Collision
+        # Krock
         collision = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
         if collision:
             explosionSound = mixer.Sound("explosion.wav")
@@ -169,7 +169,7 @@ while running:
 
         enemy(enemyX[i], enemyY[i], i)
 
-    # Bullet Movement
+    # Skottets rörelse
     if bulletY <= 0:
         bulletY = 480
         bullet_state = "ready"
