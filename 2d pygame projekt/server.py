@@ -1,7 +1,7 @@
 import socket
 from _thread import *
 import pickle
-from game import Game
+
 
 server = "10.11.250.207"
 port = 5555
