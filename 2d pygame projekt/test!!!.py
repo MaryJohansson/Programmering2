@@ -3,181 +3,160 @@ import random
 
 import pygame
 from pygame import mixer
-
+from minaklasser import *
+from sys import exit
 # Inviga pygame
 pygame.init()
-
+skott_status = "redo"
 # Skapa spelplanet
-screen = pygame.display.set_mode((800, 600))
-
+skärm = pygame.display.set_mode((800, 600))
+skott = Skott()
 # Bakgrund
-background = pygame.image.load('background.png')
+bakgrund = pygame.image.load('desert1.png')
 
 # Ljud
-mixer.music.load("background.wav")
+mixer.music.load("ljud.mp3")
 mixer.music.play(-1)
 
-# Caption and Icon
-pygame.display.set_caption("Space Invader")
-icon = pygame.image.load('ufo.png')
+# Seplets namn och Ikon
+pygame.display.set_caption("Besegra Ursula")
+icon = pygame.image.load('ursula.png')
 pygame.display.set_icon(icon)
 
 # Spelare
-playerImg = pygame.image.load('player.png')
-playerX = 370
-playerY = 480
-playerX_change = 0
+spelare = Spelare()
 
 # Fiende
-enemyImg = []
-enemyX = []
-enemyY = []
-enemyX_change = []
-enemyY_change = []
-num_of_enemies = 6
+fiende = []
+num_av_fiender = 8
 
-for i in range(num_of_enemies):
-    enemyImg.append(pygame.image.load('enemy.png'))
-    enemyX.append(random.randint(0, 736))
-    enemyY.append(random.randint(50, 150))
-    enemyX_change.append(4)
-    enemyY_change.append(40)
+for i in range(num_av_fiender):
+    fiende.append(Fiender())
 
 # Skott
 
 # Ready - You can't see the bullet on the screen
 # Fire - The bullet is currently moving
 
-bulletImg = pygame.image.load('bullet.png')
-bulletX = 0
-bulletY = 480
-bulletX_change = 0
-bulletY_change = 10
-bullet_state = "ready"
+
 
 # Poäng
-
-score_value = 0
-font = pygame.font.Font('freesansbold.ttf', 32)
+poängvärde = 0
+typsnitt = pygame.font.Font('freesansbold.ttf', 32)
 
 textX = 10
 testY = 10
 
-# Game Over
-over_font = pygame.font.Font('freesansbold.ttf', 64)
+# Spelet är slut
+typsnitt_över = pygame.font.Font('freesansbold.ttf', 64)
 
 
-def show_score(x, y):
-    score = font.render("Score : " + str(score_value), True, (255, 255, 255))
-    screen.blit(score, (x, y))
+def visa_poäng(x, y):
+    poäng = typsnitt.render("Poäng : " + str(poängvärde), True, (255, 255, 255))
+    skärm.blit(poäng, (x, y))
 
 
-def game_over_text():
-    over_text = over_font.render("GAME OVER", True, (255, 255, 255))
-    screen.blit(over_text, (200, 250))
+def spelet_slut():
+    över_text = typsnitt_över.render("SPELET ÄR SLUT", True, (255, 255, 255))
+    skärm.blit(över_text, (125,250))
 
-
-def player(x, y):
-    screen.blit(playerImg, (x, y))
-
-
-def enemy(x, y, i):
-    screen.blit(enemyImg[i], (x, y))
-
-
-def fire_bullet(x, y):
-    global bullet_state
-    bullet_state = "fire"
-    screen.blit(bulletImg, (x + 16, y + 10))
-
-
-def isCollision(enemyX, enemyY, bulletX, bulletY):
-    distance = math.sqrt(math.pow(enemyX - bulletX, 2) + (math.pow(enemyY - bulletY, 2)))
-    if distance < 27:
+def Knuff(fiendeX, fiendeY, skottX, skottY):
+    distans = math.sqrt(math.pow(fiendeX - skottX, 2) + (math.pow(skottY - fiendeY, 2)))
+    if distans < 27:
         return True
     else:
         return False
 
+def rita(skott, fiende):
+    if skott_status == "skjut":
+        skärm.blit(skott.bild, (skott.x, skott.y))
+    for i in range(len(fiende)):
+        skärm.blit(fiende[i].bild, (fiende[i].x, fiende[i].y))
 
-# Game Loop
-running = True
-while running:
+    skärm.blit(spelare.bild, (spelare.x, spelare.y))
+
+    pygame.display.update()
+
+#
+igång = True
+while igång:
 
     # RGB = Röd, Grön, Blå
-    screen.fill((0, 0, 0))
+    skärm.fill((0, 0, 0))
     # Bakgrunds bild
-    screen.blit(background, (0, 0))
+    skärm.blit(bakgrund, (0, 0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            igång = False
+
 
         # if keystroke is pressed check whether its right or left
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                playerX_change = -5
+                spelare.x_förändring = -5
             if event.key == pygame.K_RIGHT:
-                playerX_change = 5
+                spelare.x_förändring = 5
             if event.key == pygame.K_SPACE:
-                if bullet_state is "ready":
-                    bulletSound = mixer.Sound("laser.wav")
-                    bulletSound.play()
-                    # Get the current x cordinate of the spaceship
-                    bulletX = playerX
-                    fire_bullet(bulletX, bulletY)
+                if skott_status == "redo":
+                    skottljud = mixer.Sound("laser.wav")
+                    skottljud.play()
+                    # Få x koordinat av yoda
+
+                    skott.x = spelare.x
+                    skott_status= "skjut"
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                playerX_change = 0
+                spelare.x_förändring = 0
 
     # 5 = 5 + -0.1 -> 5 = 5 - 0.1
     # 5 = 5 + 0.1
 
-    playerX += playerX_change
-    if playerX <= 0:
-        playerX = 0
-    elif playerX >= 736:
-        playerX = 736
+    spelare.x += spelare.x_förändring
+    if spelare.x <= 0:
+        spelare.x = 0
+    elif spelare.x >= 736:
+        spelare.x= 736
 
     # Fienders rörelse
-    for i in range(num_of_enemies):
+    for i in range(num_av_fiender):
 
         # Game Over
-        if enemyY[i] > 440:
-            for j in range(num_of_enemies):
-                enemyY[j] = 2000
-            game_over_text()
+        if fiende[i].y > 440:
+            for j in range(num_av_fiender):
+                fiende[j].y = 2000
+            skott_status = "inte redo"
+            spelet_slut()
             break
 
-        enemyX[i] += enemyX_change[i]
-        if enemyX[i] <= 0:
-            enemyX_change[i] = 4
-            enemyY[i] += enemyY_change[i]
-        elif enemyX[i] >= 736:
-            enemyX_change[i] = -4
-            enemyY[i] += enemyY_change[i]
+        fiende[i].x += fiende[i].x_förändring
+        if fiende[i].x <= 0:
+            fiende[i].x_förändring = 4
+            fiende[i].y += fiende[i].y_förändring
+        elif fiende[i].x >= 736:
+            fiende[i].x_förändring = -4
+            fiende[i].y += fiende[i].y_förändring
 
         # Krock
-        collision = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
-        if collision:
-            explosionSound = mixer.Sound("explosion.wav")
-            explosionSound.play()
-            bulletY = 480
-            bullet_state = "ready"
-            score_value += 1
-            enemyX[i] = random.randint(0, 736)
-            enemyY[i] = random.randint(50, 150)
+        krock = Knuff(fiende[i].x, fiende[i].y, skott.x, skott.y)
+        if krock:
+            explosion_ljud = mixer.Sound("alien.mp3 ")
+            explosion_ljud.play()
+            skott.y = 480
+            skott_status = "redo"
+            poängvärde += 1
+            fiende[i].x = random.randint(0, 736)
+            fiende[i].y = random.randint(50, 150)
 
-        enemy(enemyX[i], enemyY[i], i)
 
     # Skottets rörelse
-    if bulletY <= 0:
-        bulletY = 480
-        bullet_state = "ready"
+    if skott.y <= 0:
+        skott.y = 480
+        skott_status = "redo"
 
-    if bullet_state is "fire":
-        fire_bullet(bulletX, bulletY)
-        bulletY -= bulletY_change
+    if skott_status == "skjut":
+        skott.y -= skott.y_förändring
 
-    player(playerX, playerY)
-    show_score(textX, testY)
-    pygame.display.update()
+    visa_poäng(textX, testY)
+    rita(skott, fiende)
+
