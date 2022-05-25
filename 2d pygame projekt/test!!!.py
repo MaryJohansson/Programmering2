@@ -7,10 +7,10 @@ from minaklasser import *
 from sys import exit
 # Inviga pygame
 pygame.init()
-skott_status = "redo"
+
 # Skapa spelplanet
 skärm = pygame.display.set_mode((800, 600))
-skott = Skott()
+allaskott = []
 # Bakgrund
 bakgrund = pygame.image.load('desert1.png')
 
@@ -25,6 +25,7 @@ pygame.display.set_icon(icon)
 
 # Spelare
 spelare = Spelare()
+spelare2 = Spelare2()
 
 # Fiende
 fiende = []
@@ -67,17 +68,19 @@ def Knuff(fiendeX, fiendeY, skottX, skottY):
     else:
         return False
 
-def rita(skott, fiende):
-    if skott_status == "skjut":
+def rita(fiende):
+    for skott in allaskott:
         skärm.blit(skott.bild, (skott.x, skott.y))
+
     for i in range(len(fiende)):
         skärm.blit(fiende[i].bild, (fiende[i].x, fiende[i].y))
 
     skärm.blit(spelare.bild, (spelare.x, spelare.y))
+    skärm.blit(spelare2.bild, (spelare2.x, spelare2.y))
 
     pygame.display.update()
 
-#
+# När spelet är igång
 igång = True
 while igång:
 
@@ -96,18 +99,29 @@ while igång:
                 spelare.x_förändring = -5
             if event.key == pygame.K_RIGHT:
                 spelare.x_förändring = 5
-            if event.key == pygame.K_SPACE:
+            if event.key == pygame.K_SPACE or event.key == pygame.K_s:
                 if skott_status == "redo":
                     skottljud = mixer.Sound("laser.wav")
                     skottljud.play()
                     # Få x koordinat av yoda
-
+                    skott = Skott()
                     skott.x = spelare.x
-                    skott_status= "skjut"
+                    allaskott.append(skott)
+
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 spelare.x_förändring = 0
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_a:
+                spelare2.x_förändring = -5
+            if event.key == pygame.K_d:
+                spelare2.x_förändring = 5
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_a or event.key == pygame.K_d:
+                spelare2.x_förändring = 0
 
     # 5 = 5 + -0.1 -> 5 = 5 - 0.1
     # 5 = 5 + 0.1
@@ -117,6 +131,12 @@ while igång:
         spelare.x = 0
     elif spelare.x >= 736:
         spelare.x= 736
+
+    spelare2.x += spelare2.x_förändring
+    if spelare2.x <= 0:
+        spelare2.x = 0
+    elif spelare2.x >= 736:
+        spelare2.x = 736
 
     # Fienders rörelse
     for i in range(num_av_fiender):
@@ -138,25 +158,26 @@ while igång:
             fiende[i].y += fiende[i].y_förändring
 
         # Krock
-        krock = Knuff(fiende[i].x, fiende[i].y, skott.x, skott.y)
-        if krock:
-            explosion_ljud = mixer.Sound("alien.mp3 ")
-            explosion_ljud.play()
-            skott.y = 480
-            skott_status = "redo"
-            poängvärde += 1
-            fiende[i].x = random.randint(0, 736)
-            fiende[i].y = random.randint(50, 150)
+        for skott in allaskott:
+            krock = Knuff(fiende[i].x, fiende[i].y, skott.x, skott.y)
+            if krock:
+                explosion_ljud = mixer.Sound("alien.mp3 ")
+                explosion_ljud.play()
+                skott.y = 480
+                skott_status = "redo"
+                poängvärde += 1
+                fiende[i].x = random.randint(0, 736)
+                fiende[i].y = random.randint(50, 150)
 
 
     # Skottets rörelse
-    if skott.y <= 0:
-        skott.y = 480
-        skott_status = "redo"
+    for skott in allaskott:
+        if skott.y <= 0:
+            skott.y = 480
+            skott_status = "redo"
 
-    if skott_status == "skjut":
-        skott.y -= skott.y_förändring
+    Skott -= skott.y_förändring
 
     visa_poäng(textX, testY)
-    rita(skott, fiende)
+    rita( fiende)
 
