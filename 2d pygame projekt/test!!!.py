@@ -29,7 +29,7 @@ spelare2 = Spelare2()
 
 # Fiende
 fiende = []
-num_av_fiender = 5
+num_av_fiender = 10
 
 for i in range(num_av_fiender):
     fiende.append(Fiender())
@@ -65,7 +65,7 @@ def spelet_slut():
 
 def Knuff(fiendeX, fiendeY, skottX, skottY):
     distans = math.sqrt(math.pow(fiendeX - skottX, 2) + (math.pow(skottY - fiendeY, 2)))
-    if distans < 35:
+    if distans < 65:
         return True
     else:
         return False
@@ -167,12 +167,11 @@ while igång:
 
         try:
             # Krock
-            for i, skott in enumerate(allaskott):
-                krock = Knuff(fiende[i].x, fiende[i].y, skott.x, skott.y)
-                if krock:
-                    explosion_ljud = mixer.Sound("alien.mp3 ")
+            for j, skott in enumerate(allaskott):
+                if Knuff(fiende[i].x, fiende[i].y, skott.x, skott.y):
+                    explosion_ljud = mixer.Sound("alien.mp3")
                     explosion_ljud.play()
-                    #allaskott.pop(i)
+                    allaskott.pop(j)
                     poängvärde += 1
                     fiende[i].x = random.randint(0, 736)
                     fiende[i].y = random.randint(50, 150)
