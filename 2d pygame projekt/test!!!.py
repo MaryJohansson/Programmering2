@@ -29,7 +29,7 @@ spelare2 = Spelare2()
 
 # Fiende
 fiende = []
-num_av_fiender = 1
+num_av_fiender = 5
 
 for i in range(num_av_fiender):
     fiende.append(Fiender())
@@ -65,7 +65,7 @@ def spelet_slut():
 
 def Knuff(fiendeX, fiendeY, skottX, skottY):
     distans = math.sqrt(math.pow(fiendeX - skottX, 2) + (math.pow(skottY - fiendeY, 2)))
-    if distans < 50:
+    if distans < 35:
         return True
     else:
         return False
