@@ -15,7 +15,8 @@ allaskott = []
 bakgrund = pygame.image.load('desert1.png')
 
 # Ljud
-mixer.music.load("ljud.mp3")
+pygame.mixer.music.load("ljud.mp3")
+pygame.mixer.music.set_volume(1.5)
 mixer.music.play(-1)
 
 # Seplets namn och Ikon
@@ -103,6 +104,7 @@ while igång:
                 spelare.x_förändring = 5
             if event.key == pygame.K_UP and len(allaskott) < 2:
                     skottljud = mixer.Sound("laser.wav")
+                    pygame.mixer.Sound.set_volume(skottljud,0.2)
                     skottljud.play()
                     # Få x koordinat av yoda
                     skott = Skott()
@@ -110,7 +112,8 @@ while igång:
                     allaskott.append(skott)
 
             if event.key == pygame.K_s and len(allaskott) < 2:
-                    skottljud = mixer.Sound("laser.wav")
+                    skottljud = pygame.mixer.Sound("laser.wav")
+                    pygame.mixer.Sound.set_volume(skottljud, 0.2)
                     skottljud.play()
                     # Få x koordinat av mimmi
                     skott = Skott()
@@ -169,7 +172,8 @@ while igång:
             # Krock
             for j, skott in enumerate(allaskott):
                 if Knuff(fiende[i].x, fiende[i].y, skott.x, skott.y):
-                    explosion_ljud = mixer.Sound("alien.mp3")
+                    explosion_ljud = pygame.mixer.Sound("alien.mp3")
+                    pygame.mixer.Sound.set_volume(explosion_ljud, 0.2)
                     explosion_ljud.play()
                     allaskott.pop(j)
                     poängvärde += 1
