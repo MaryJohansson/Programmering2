@@ -25,8 +25,9 @@ icon = pygame.image.load('ursula.png')
 pygame.display.set_icon(icon)
 
 # Spelare
-spelare = Spelare()
-spelare2 = Spelare2()
+yoda = Yoda('yoda50', 440, 480)
+mimmii = Mimmii('mimmii.png', 300, 480)
+
 
 # Fiende
 fiende = []
@@ -78,8 +79,8 @@ def rita(fiende):
     for i in range(len(fiende)):
         skärm.blit(fiende[i].bild, (fiende[i].x, fiende[i].y))
 
-    skärm.blit(spelare.bild, (spelare.x, spelare.y))
-    skärm.blit(spelare2.bild, (spelare2.x, spelare2.y))
+    skärm.blit(yoda.bild, (yoda.x, yoda.y))
+    skärm.blit(mimmii.bild, (mimmii.x, mimmii.y))
 
     pygame.display.update()
 
@@ -99,16 +100,16 @@ while igång:
         # if keystroke is pressed check whether its right or left
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                spelare.x_förändring = -5
+                yoda.x_förändring = -5
             if event.key == pygame.K_RIGHT:
-                spelare.x_förändring = 5
+                yoda.x_förändring = 5
             if event.key == pygame.K_UP and len(allaskott) < 2:
                     skottljud = mixer.Sound("laser.wav")
                     pygame.mixer.Sound.set_volume(skottljud,0.2)
                     skottljud.play()
                     # Få x koordinat av yoda
                     skott = Skott()
-                    skott.x = spelare.x
+                    skott.x = yoda.x
                     allaskott.append(skott)
 
             if event.key == pygame.K_s and len(allaskott) < 2:
@@ -117,38 +118,38 @@ while igång:
                     skottljud.play()
                     # Få x koordinat av mimmi
                     skott = Skott()
-                    skott.x = spelare2.x
+                    skott.x = mimmii.x
                     allaskott.append(skott)
 
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                spelare.x_förändring = 0
+                yoda.x_förändring = 0
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
-                spelare2.x_förändring = -5
+                mimmii.x_förändring = -5
             if event.key == pygame.K_d:
-                spelare2.x_förändring = 5
+                mimmii.x_förändring = 5
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_d:
-                spelare2.x_förändring = 0
+                mimmii.x_förändring = 0
 
     # 5 = 5 + -0.1 -> 5 = 5 - 0.1
     # 5 = 5 + 0.1
 
-    spelare.x += spelare.x_förändring
-    if spelare.x <= 0:
-        spelare.x = 0
-    elif spelare.x >= 736:
-        spelare.x= 736
+    yoda.x += yoda.x_förändring
+    if yoda.x <= 0:
+        yoda.x = 0
+    elif yoda.x >= 736:
+        yoda.x= 736
 
-    spelare2.x += spelare2.x_förändring
-    if spelare2.x <= 0:
-        spelare2.x = 0
-    elif spelare2.x >= 736:
-        spelare2.x = 736
+    mimmii.x += mimmii.x_förändring
+    if mimmii.x <= 0:
+        mimmii.x = 0
+    elif mimmii.x >= 736:
+        mimmii.x = 736
 
     # Fienders rörelse
     for i in range(num_av_fiender):
